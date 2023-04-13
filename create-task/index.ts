@@ -1,8 +1,10 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
+
     context.res = {
-        body: "Here we are going to list all tasks"
+        status: 202,
+        body: "Endpoint to create a new task"
     };
 
 };
