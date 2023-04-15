@@ -2,6 +2,7 @@
   "IsEncrypted": false,
   "Values": {
     "FUNCTIONS_WORKER_RUNTIME": "node",
-    "AzureWebJobsStorage": ""
+    "AzureWebJobsStorage": "",
+    "DATABASE_TYPE": 1
   }
 }
