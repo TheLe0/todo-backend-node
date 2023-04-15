@@ -13,7 +13,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     }
 
     context.res = {
-        body: "The id informed is " + id
+        body: process.env.DATABASE_TYPE
     };
 
 };
