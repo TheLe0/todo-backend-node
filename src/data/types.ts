@@ -3,5 +3,6 @@ import { Task } from "../domain";
 export interface IApplicationStorage {
     createTask (name: string): Task;
     findTaskById (id: string): Task;
-    GetAllTasks (): Array<Task>;
+    getAllTasks (): Array<Task>;
+    deleteTaskById (id: string): boolean;
 }

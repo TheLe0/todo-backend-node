@@ -13,6 +13,6 @@ export class FindTaskUseCase extends BaseUseCase {
     }
 
     public GetAll (): Array<Task> {
-        return this.database.GetAllTasks();
+        return this.database.getAllTasks();
     }
 }
