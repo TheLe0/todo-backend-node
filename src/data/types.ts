@@ -5,4 +5,5 @@ export interface IApplicationStorage {
     findTaskById (id: string): Task;
     getAllTasks (): Array<Task>;
     deleteTaskById (id: string): boolean;
+    closeTaskById (id: string): Task;
 }

@@ -48,6 +48,24 @@ export default class InMemory implements IApplicationStorage {
         return taskDeleted;
     }
 
+    public closeTaskById (id: string): Task {
+
+        let newTaskList = new Array<Task>();
+        let task = undefined;
+
+        for (let row of this.tasks) {
+            if (row.id == id) {
+                row.isClosed = true;
+                task = row;
+            }
+
+            newTaskList.push(row);
+        }
+
+        this.tasks = newTaskList;
+        return task;
+    }
+
     public getAllTasks (): Array<Task> {
         return this.tasks;
     }
