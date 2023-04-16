@@ -11,4 +11,8 @@ export class FindTaskUseCase extends BaseUseCase {
     public findById (id: string): Task {
         return this.database.findTaskById(id);
     }
+
+    public GetAll (): Array<Task> {
+        return this.database.GetAllTasks();
+    }
 }

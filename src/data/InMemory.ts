@@ -6,7 +6,7 @@ export default class InMemory implements IApplicationStorage {
     private tasks: Array<Task>;
 
     constructor() {
-        this.tasks = new Array<Task>();
+        this.createDatabaseStructure();
     }
 
     public createTask (name: string): Task {
@@ -29,5 +29,13 @@ export default class InMemory implements IApplicationStorage {
         }
 
         return task;
+    }
+
+    public GetAllTasks (): Array<Task> {
+        return this.tasks;
+    }
+
+    private createDatabaseStructure () {
+        this.tasks = new Array<Task>();
     }
 }
