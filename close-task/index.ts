@@ -1,4 +1,6 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
+import { AppConfig } from "../src/config";
+import { UpdateTaskUseCase } from "../src/useCases/UpdateTask";
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
     const { id } = req.params
@@ -10,10 +12,23 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
             body: "You must inform an id"
         };
     }
+    var config: AppConfig = {
+        databaseType: Number(process.env.DATABASE_TYPE)
+    }
 
-    context.res = {
-        body: "The id informed is " + id
-    };
+    const useCase = new UpdateTaskUseCase(config);
+    const task = useCase.closeById(id);
+
+    if (task == undefined) {
+        context.res = {
+            status: 404,
+            body: "No task found with the informed Id"
+        };
+    } else {
+        context.res = {
+            body: task
+        };
+    }
 
 };
 

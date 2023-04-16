@@ -1,5 +1,6 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
-import { createTask } from "../src/useCases";
+import { CreateTaskUseCase } from "../src/useCases";
+import { AppConfig } from "../src/config";
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
 
@@ -11,9 +12,15 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
         return;
     }
 
+    var config: AppConfig = {
+        databaseType: Number(process.env.DATABASE_TYPE)
+    }
+
+    var useCase = new CreateTaskUseCase(config);
+
     context.res = {
         status: 202,
-        body: createTask(req.body.name)
+        body: useCase.createTask(req.body.name)
     };
 
 };
