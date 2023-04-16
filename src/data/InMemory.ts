@@ -16,4 +16,18 @@ export default class InMemory implements IApplicationStorage {
 
         return task;
     }
+
+    public findTaskById (id: string): Task {
+
+        let task: Task = undefined;
+
+        for (let row of this.tasks) {
+            if (row.id == id) {
+                task = row;
+                break;
+            }
+        }
+
+        return task;
+    }
 }
